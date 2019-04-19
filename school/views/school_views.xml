@@ -1,0 +1,186 @@
+<odoo>
+
+
+	<record model="ir.ui.view" id="students_data_form_view">
+		<field name="name">students.data.form</field>
+		<field name="model">students.data</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="students">
+				<sheet>
+					<group>
+						<field name="name" select="1" />
+						<field name="major" select="1" />
+						<field name="students_number" select="1" />
+						<field name="mentor" select="1" />
+						<field name="class_rooms" select="1" widget="many2many_tags" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="students_data_form_tree">
+		<field name="name">students.data.tree</field>
+		<field name="model">students.data</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<form string="students">
+				<field name="name" select="1" />
+				<field name="major" select="1" />
+				<field name="students_number" select="1" />
+				<field name="mentor" select="1" />
+			</form>
+		</field>
+	</record>
+
+	<record id="students_data_search_view" model="ir.ui.view">
+		<field name="name">students.data.search</field>
+		<field name="model">students.data</field>
+		<field name="arch" type="xml">
+			<search string="Search">
+				<field name="name" string="Name" filter_domain="[()]" />
+				<filter string="Major" name="major" domain="[()]" />
+
+				<group expand="0" string="Group By...">
+					<filter string="Major" domain="[]"
+						context="{'group_by':'major'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+	 
+	<record id="act_students_data" model="ir.actions.act_window">
+		<field name="name">Students</field>
+		<field name="res_model">students.data</field>
+		<field name="view_mode">tree,form</field>
+		<field name="context">{ }
+		</field>
+		<field name="search_view_id" ref="students_data_search_view" />
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Here, you can create new Students data
+			</p>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="teachers_data_form_view">
+		<field name="name">teachers.data.form</field>
+		<field name="model">teachers.data</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="teachers">
+				<sheet>
+					<group>
+						<field name="name" select="1" />
+						<field name="teachers_number" select="1" />
+						<field name="students" select="1" widget="one2many_list" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="teachers_data_form_tree">
+		<field name="name">teachers.data.tree</field>
+		<field name="model">teachers.data</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<form string="teachers">
+				<field name="name" select="1" />
+				<field name="teachers_number" select="1" />
+			</form>
+		</field>
+	</record>
+
+	<record id="teachers_data_search_view" model="ir.ui.view">
+		<field name="name">teachers.data.search</field>
+		<field name="model">teachers.data</field>
+		<field name="arch" type="xml">
+			<search string="Search">
+				<field name="name" string="Name" filter_domain="[()]" />
+				<separator />
+			</search>
+		</field>
+	</record>
+
+
+	<record id="act_teachers_data" model="ir.actions.act_window">
+		<field name="name">Teachers</field>
+		<field name="res_model">teachers.data</field>
+		<field name="view_mode">tree,form</field>
+		<field name="context">{ }
+		</field>
+		<field name="search_view_id" ref="teachers_data_search_view" />
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Here, you can create new Teachers data
+			</p>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="classroom_form_view">
+		<field name="name">class.room.form</field>
+		<field name="model">class.room</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="">
+				<sheet>
+					<group>
+						<field name="name" select="1" />
+						<field name="classroom_teacher" select="1" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="classroom_tree_view">
+		<field name="name">class.room.tree</field>
+		<field name="model">class.room</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="">
+				<field name="name" select="1" />
+				<field name="classroom_teacher" select="1" />
+			</form>
+		</field>
+	</record>
+
+	<record id="classroom_search_view" model="ir.ui.view">
+		<field name="name">class.room.search</field>
+		<field name="model">class.room</field>
+		<field name="arch" type="xml">
+			<search string="Search">
+				<field name="name" string="Name" filter_domain="[()]" />
+
+			</search>
+		</field>
+	</record>
+
+	<record id="act_class_room" model="ir.actions.act_window">
+		<field name="name">Class Room</field>
+		<field name="res_model">class.room</field>
+		<field name="view_mode">tree,form</field>
+		<field name="context">{ }
+		</field>
+		<field name="search_view_id" ref="classroom_search_view" />
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Here, you can create new Classroom data
+			</p>
+		</field>
+	</record>
+
+	<menuitem name="School" id="menu_main_school"
+		groups="group_student_user,group_teacher_user" />
+
+	<menuitem action="act_students_data" id="menu_students_data"
+		name="Students" parent="menu_main_school" sequence="2" />
+	<menuitem action="act_teachers_data" id="menu_teachers_data"
+		name="Teachers" parent="menu_main_school" sequence="3" />
+	<menuitem action="act_class_room" id="menu_class_room"
+		name="Class" parent="menu_main_school" sequence="4" />
+
+
+</odoo>

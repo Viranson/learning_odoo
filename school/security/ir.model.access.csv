@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_students_data,students.data,model_students_data,school.group_student_user,1,1,1,1
+access_students_data_teacher,students.data,model_students_data,school.group_teacher_user,1,1,1,1
+access_teachers_data,teachers.data,model_teachers_data,school.group_student_user,1,0,0,0
+access_teachers_data_teacher,teachers.data,model_teachers_data,school.group_teacher_user,1,1,1,1
+access_classroom,class.room,model_class_room,school.group_student_user,1,0,0,0
+access_classroom_teacher,class.room,model_class_room,school.group_teacher_user,1,1,1,1
