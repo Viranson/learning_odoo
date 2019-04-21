@@ -21,6 +21,6 @@ class teacher(models.Model):
 class classroom(models.Model):
     _name = "class.room"
     name              = fields.Char(string = "Class")
-    classroom_teacher = fields.Many2one(string = "Classroom Teacher")
+    classroom_teacher = fields.Many2one("teachers.data",string = "Classroom Teacher")
     
     
