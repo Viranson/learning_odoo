@@ -1,6 +1,4 @@
 <odoo>
-
-
 	<record model="ir.ui.view" id="students_data_form_view">
 		<field name="name">students.data.form</field>
 		<field name="model">students.data</field>
@@ -9,11 +7,11 @@
 			<form string="students">
 				<sheet>
 					<group>
-						<field name="name" select="1" />
-						<field name="major" select="1" />
-						<field name="students_number" select="1" />
-						<field name="mentor" select="1" />
-						<field name="class_rooms" select="1" widget="many2many_tags" />
+						<field name="name" />
+<!-- 						<field name="major" select="1" /> -->
+						<field name="students_number"/>
+						<field name="mentor_id"/>
+						<field name="class_rooms" widget="many2many_tags" />
 					</group>
 				</sheet>
 			</form>
@@ -26,10 +24,10 @@
 		<field name="type">tree</field>
 		<field name="arch" type="xml">
 			<form string="students">
-				<field name="name" select="1" />
-				<field name="major" select="1" />
-				<field name="students_number" select="1" />
-				<field name="mentor" select="1" />
+				<field name="name"/>
+				<!-- <field name="major" select="1" /> -->
+				<field name="students_number"/>
+				<field name="mentor_id"/>
 			</form>
 		</field>
 	</record>
@@ -72,10 +70,21 @@
 			<form string="teachers">
 				<sheet>
 					<group>
-						<field name="name" select="1" />
-						<field name="teachers_number" select="1" />
-						<field name="students" select="1" widget="one2many_list" />
+						<field name="name"/>
+						<field name="teachers_number"/>
+						
 					</group>
+					<notebook>
+					<page string = "Students">
+						<field name="students" widget="one2many_list">
+							<tree>
+								<field name="name" />
+							<field name="students_number"/>
+							</tree>
+						</field>
+					</page>
+					</notebook>
+					
 				</sheet>
 			</form>
 		</field>
@@ -87,8 +96,8 @@
 		<field name="type">tree</field>
 		<field name="arch" type="xml">
 			<form string="teachers">
-				<field name="name" select="1" />
-				<field name="teachers_number" select="1" />
+				<field name="name"/>
+				<field name="teachers_number"/>
 			</form>
 		</field>
 	</record>
@@ -127,8 +136,8 @@
 			<form string="">
 				<sheet>
 					<group>
-						<field name="name" select="1" />
-						<field name="classroom_teacher" select="1" />
+						<field name="name"/>
+						<field name="classroom_teacher"/>
 					</group>
 				</sheet>
 			</form>
@@ -141,8 +150,8 @@
 		<field name="type">form</field>
 		<field name="arch" type="xml">
 			<form string="">
-				<field name="name" select="1" />
-				<field name="classroom_teacher" select="1" />
+				<field name="name"/>
+				<field name="classroom_teacher"/>
 			</form>
 		</field>
 	</record>
@@ -181,6 +190,4 @@
 		name="Teachers" parent="menu_main_school" sequence="3" />
 	<menuitem action="act_class_room" id="menu_class_room"
 		name="Class" parent="menu_main_school" sequence="4" />
-
-
 </odoo>
